@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using ASS.Features;
 using ASS.Features.Collections;
@@ -53,6 +53,7 @@ public static class CharacterCreator
     public static readonly string[] CustomCardItemsList;
     public static readonly HashSet<CustomItem> CustomItems = [];
 
+    public static bool IsEnabled = false;
 
     static CharacterCreator()
     {
@@ -97,9 +98,9 @@ public static class CharacterCreator
                 onChanged: ChangeAmmoDisplay),
 
             new ASSTextDisplay(158, $"{translation.AmmoDisplayText} : \n{translation.AmmoNoneText}"),
-            new ASSSlider(159, translation.ScaleXSettingText, 1f, 0.834f, 1.2f, hint: translation.ScaleXSettingHint),
-            new ASSSlider(160, translation.ScaleYSettingText, 1f, 0.834f, 1.2f, hint: translation.ScaleYSettingHint),
-            new ASSSlider(161, translation.ScaleZSettingText, 1f, 0.834f, 1.2f, hint: translation.ScaleZSettingHint),
+            new ASSSlider(159, translation.ScaleXSettingText, 1f, 0.1f, 2f, hint: translation.ScaleXSettingHint),
+            new ASSSlider(160, translation.ScaleYSettingText, 1f, 0.1f, 2f, hint: translation.ScaleYSettingHint),
+            new ASSSlider(161, translation.ScaleZSettingText, 1f, 0.1f, 2f, hint: translation.ScaleZSettingHint),
             new ASSDropdown(162, translation.Item1Text, ItemsList),
             new ASSDropdown(163, translation.Item2Text, ItemsList),
             new ASSDropdown(164, translation.Item3Text, ItemsList),
@@ -243,7 +244,7 @@ public static class CharacterCreator
     private static void CreateCharacter(LabPlayer labPlayer, ASSBase assBase)
     {
         ExiledPlayer player = labPlayer.ToExiled();
-        if (player.IsAlive || !Round.IsStarted)
+        if (player.IsAlive || !Round.IsStarted || !CharacterCreator.IsEnabled)
         {
             return;
         }
@@ -296,7 +297,7 @@ public static class CharacterCreator
             KeycardCreatorHelpers.CreateKeycard(labPlayer);
         }
 
-        player.Scale = ScaleHelpers.GetScale(labPlayer);
+        player.SetFakeScale(ScaleHelpers.GetScale(labPlayer), Player.List);
 
         player.Teleport(GetPlayerSpawnLocation(player.ToLab()));
 
