@@ -8,7 +8,7 @@ namespace SSSCharacterCreator.Helpers;
 #pragma warning disable 1591
 public static class ScaleHelpers
 {
-    public static Vector3 GetScale(Player player)
+    public static Vector3 GetFakeScale(Player player)
     {
         float x = 1f;
         float y = 1f;
