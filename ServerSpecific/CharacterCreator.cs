@@ -97,9 +97,9 @@ public static class CharacterCreator
                 onChanged: ChangeAmmoDisplay),
 
             new ASSTextDisplay(158, $"{translation.AmmoDisplayText} : \n{translation.AmmoNoneText}"),
-            new ASSSlider(159, translation.ScaleXSettingText, 1f, 0.1f, 2f, hint: translation.ScaleXSettingHint),
-            new ASSSlider(160, translation.ScaleYSettingText, 1f, 0.1f, 2f, hint: translation.ScaleYSettingHint),
-            new ASSSlider(161, translation.ScaleZSettingText, 1f, 0.1f, 2f, hint: translation.ScaleZSettingHint),
+            new ASSSlider(159, translation.ScaleXSettingText, 1f, 0.834f, 1.2f, hint: translation.ScaleXSettingHint),
+            new ASSSlider(160, translation.ScaleYSettingText, 1f, 0.834f, 1.2f, hint: translation.ScaleYSettingHint),
+            new ASSSlider(161, translation.ScaleZSettingText, 1f, 0.834f, 1.2f, hint: translation.ScaleZSettingHint),
             new ASSDropdown(162, translation.Item1Text, ItemsList),
             new ASSDropdown(163, translation.Item2Text, ItemsList),
             new ASSDropdown(164, translation.Item3Text, ItemsList),
